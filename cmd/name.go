@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"crypto/tls"
-	"fmt"
+	_ "fmt"
 	"github.com/PuerkitoBio/goquery"
 	"net/http"
 	"net/url"
@@ -150,7 +150,7 @@ func Meimingteng(client *http.Client, name string, c chan NameInfo) () {
 
 	resp, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
 	//doc,_ := goquery.NewDocumentFromReader(resp.Body)
