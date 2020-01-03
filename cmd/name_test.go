@@ -40,8 +40,8 @@ func TestMeimingteng(t *testing.T) {
 			</body>
 			`
 
-	dom,err:=goquery.NewDocumentFromReader(strings.NewReader(html))
-	if err!=nil{
+	dom, err := goquery.NewDocumentFromReader(strings.NewReader(html))
+	if err != nil {
 		log.Fatalln(err)
 	}
 

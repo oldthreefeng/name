@@ -7,7 +7,6 @@ Copyright 2020 louis.
 */
 package cmd
 
-
 var (
 	J = `
 匕 厂 刀 儿 七 人 入 十 厶

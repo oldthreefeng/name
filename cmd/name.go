@@ -15,7 +15,7 @@ import (
 
 const (
 	MaxIdleConnections int = 20
-	RequestTimeout   int = 30
+	RequestTimeout     int = 30
 )
 
 var (
@@ -35,7 +35,7 @@ func createHttpClient() *http.Client {
 	}
 	client := &http.Client{
 		Transport: tr,
-		Timeout: time.Duration(RequestTimeout) * time.Second,
+		Timeout:   time.Duration(RequestTimeout) * time.Second,
 	}
 	return client
 }
@@ -44,7 +44,7 @@ func Name() {
 
 	datas := make([]NameInfo, 10)
 	Names := getWaterWords(Wuxing)
-	c  := make(chan NameInfo, 1000)
+	c := make(chan NameInfo, 1000)
 	for _, name := range Names {
 		go Meimingteng(httpClient, getName(string(name)), c)
 	}
@@ -89,7 +89,7 @@ func getWaterWords(wuxing string) (words string) {
 	return words
 }
 
-func Meimingteng(client *http.Client, name string, c chan NameInfo) () {
+func Meimingteng(client *http.Client, name string, c chan NameInfo) {
 	Time = "2019-12-21-12-30"
 	var (
 		TimeSplit = strings.Split(Time, "-")

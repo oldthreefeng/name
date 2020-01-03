@@ -15,12 +15,12 @@ var (
 	Buildstamp = ""
 	Githash    = ""
 	Goversion  = ""
-	Version    = ""
+	Version    = "1.0.0"
 	Author     string
-	LastName	string
-	Gender	string
-	Time		string
-	Wuxing 		string
+	LastName   string
+	Gender     string
+	Time       string
+	Wuxing     string
 	rootCmd    = &cobra.Command{
 		Use:   "name ",
 		Short: "name 是一个用于孩子起名的工具",
@@ -32,7 +32,7 @@ var (
 		},
 	}
 	versionCmd = &cobra.Command{
-		Use: "version",
+		Use:   "version",
 		Short: "show versions",
 		Run: func(cmd *cobra.Command, args []string) {
 			version()
@@ -51,8 +51,6 @@ run "name -h" get more help, more see https://github.com/oldthreefeng/name
 	fmt.Printf("Author :             %s\n", Author)
 }
 
-
-
 func init() {
 	rootCmd.PersistentFlags().StringVarP(&Author, "author", "", "louis.hong", "author name for copyright attribution")
 	rootCmd.PersistentFlags().StringVarP(&LastName, "lastName", "l", "", "your baby LastName")
@@ -68,5 +66,3 @@ func Execute() {
 		os.Exit(1)
 	}
 }
-
-
