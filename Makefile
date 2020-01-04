@@ -19,7 +19,7 @@ GOBIN := /usr/local/go/bin/
 SRCFILE= main.go
 SOFTWARENAME=$(NAME)-$(VERSION)
 
-PLATFORMS := darwin linux
+PLATFORMS := darwin linux windows
 .PHONY: run
 run: deps
 	$(GOBUILD) -ldflags '$(LDFLAGS)'  -o $(NAME) $(SRCFILE)

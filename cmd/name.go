@@ -16,6 +16,7 @@ import (
 const (
 	MaxIdleConnections int = 20
 	RequestTimeout     int = 30
+	MaxRoutinneNum     int = 10
 )
 
 var (
@@ -45,8 +46,10 @@ func Name() {
 	datas := make([]NameInfo, 10)
 	Names := getWaterWords(Wuxing)
 	c := make(chan NameInfo, 1000)
+	ch := make(chan int, MaxRoutinneNum)
 	for _, name := range Names {
-		go Meimingteng(httpClient, getName(string(name)), c)
+		ch <- 1
+		go Meimingteng(httpClient, getName(string(name)), c, ch)
 	}
 
 	for i := 1; i <= 25; i++ {
@@ -89,7 +92,7 @@ func getWaterWords(wuxing string) (words string) {
 	return words
 }
 
-func Meimingteng(client *http.Client, name string, c chan NameInfo) {
+func Meimingteng(client *http.Client, name string, c chan NameInfo, ch chan int) {
 	Time = "2019-12-21-12-30"
 	var (
 		TimeSplit = strings.Split(Time, "-")
@@ -168,6 +171,7 @@ func Meimingteng(client *http.Client, name string, c chan NameInfo) {
 	shengxiaoI, _ := strconv.Atoi(shengxiao)
 	wugeI, _ := strconv.Atoi(wuge)
 	c <- NameInfo{name: LastName + name, scope: (wenhuaI + wuxingI + shengxiaoI + wugeI) / 4}
+	<-ch
 }
 
 type NameInfo struct {
