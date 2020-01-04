@@ -29,7 +29,7 @@ func init() {
 
 func createHttpClient() *http.Client {
 	//proxy
-	proxy, _ := url.Parse("http://192.168.0.88:38080")
+	proxy, _ := url.Parse("http://127.0.0.1:38080")
 	tr := &http.Transport{
 		Proxy:           http.ProxyURL(proxy),
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
